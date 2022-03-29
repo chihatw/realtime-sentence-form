@@ -28,45 +28,47 @@ const BranchesPane: React.FC<{
           <div ref={provided.innerRef} {...provided.droppableProps}>
             <DroppableAreaBorderWrapper snapshot={snapshot}>
               <div style={{ display: 'grid', rowGap: 4 }}>
-                {branches.map((branch, index) => {
-                  if (branch.isDraggable) {
-                    return (
-                      <Draggable
-                        // key に index 使用不可
-                        key={branch.unitId}
-                        index={index}
-                        draggableId={branch.unitId}
-                      >
-                        {(provided) => (
-                          <div
-                            {...provided.draggableProps}
-                            ref={provided.innerRef}
-                          >
-                            <BranchContainer
-                              border={branch.border}
-                              unitId={branch.unitId}
-                              provided={provided}
-                              joshiLabels={branch.joshiLabels}
-                              isCommentMeishi={branch.isCommentMeishi}
-                            />
-                          </div>
-                        )}
-                      </Draggable>
-                    );
-                  } else {
-                    return (
-                      <BranchContainer
-                        // key に index 使用不可
-                        key={branch.unitId}
-                        border={branch.border}
-                        unitId={branch.unitId}
-                        provided={undefined}
-                        joshiLabels={branch.joshiLabels}
-                        isCommentMeishi={branch.isCommentMeishi}
-                      />
-                    );
-                  }
-                })}
+                {branches
+                  .filter((branch) => branch)
+                  .map((branch, index) => {
+                    if (branch.isDraggable) {
+                      return (
+                        <Draggable
+                          // key に index 使用不可
+                          key={branch.unitId}
+                          index={index}
+                          draggableId={branch.unitId}
+                        >
+                          {(provided) => (
+                            <div
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                            >
+                              <BranchContainer
+                                border={branch.border}
+                                unitId={branch.unitId}
+                                provided={provided}
+                                joshiLabels={branch.joshiLabels}
+                                isCommentMeishi={branch.isCommentMeishi}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      );
+                    } else {
+                      return (
+                        <BranchContainer
+                          // key に index 使用不可
+                          key={branch.unitId}
+                          border={branch.border}
+                          unitId={branch.unitId}
+                          provided={undefined}
+                          joshiLabels={branch.joshiLabels}
+                          isCommentMeishi={branch.isCommentMeishi}
+                        />
+                      );
+                    }
+                  })}
                 {provided.placeholder}
               </div>
             </DroppableAreaBorderWrapper>
