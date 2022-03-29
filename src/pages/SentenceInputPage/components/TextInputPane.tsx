@@ -3,23 +3,28 @@ import { TextField } from '@mui/material';
 
 import { AppContext } from '../../../services/context';
 import SentenceParser from './SentenceParser';
+import useOriginalTexts, {
+  INITIAL_ORIGINAL_TEXT,
+} from '../../../services/useOriginalTexts';
 
 const TextInputPane = () => {
-  const { parseInputStr, updateOriginalText, clearComplexSentence } =
-    useContext(AppContext);
+  const {
+    originalText,
+    parseInputStr,
+    updateOriginalText,
+    clearComplexSentence,
+  } = useContext(AppContext);
 
   const [text, setText] = useState('');
   const [chinese, setChinese] = useState('');
 
-  useEffect(() => {
-    updateOriginalText({ text, chinese });
-  }, [text, chinese, updateOriginalText]);
-
   const handleChangeText = (text: string) => {
     setText(text);
+    updateOriginalText({ ...originalText, text });
   };
   const handleChangeChinese = (chinese: string) => {
     setChinese(chinese);
+    updateOriginalText({ ...originalText, chinese });
   };
 
   const handleParse = (input: string) => {
@@ -36,11 +41,13 @@ const TextInputPane = () => {
     const text = [line + '.', japanese].join('\n');
     setText(text);
     setChinese(chinese);
+    updateOriginalText({ text, chinese });
   };
 
   const handleClear = () => {
     setText('');
     setChinese('');
+    updateOriginalText(INITIAL_ORIGINAL_TEXT);
     clearComplexSentence();
   };
 
