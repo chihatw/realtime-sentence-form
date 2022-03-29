@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField } from '@mui/material';
 
-import { AppContext } from '../../../services/context';
 import SentenceParser from './SentenceParser';
-import useOriginalTexts, {
-  INITIAL_ORIGINAL_TEXT,
-} from '../../../services/useOriginalTexts';
+import { AppContext } from '../../../services/context';
+import { INITIAL_ORIGINAL_TEXT } from '../../../services/useOriginalTexts';
 
 const TextInputPane = () => {
   const {

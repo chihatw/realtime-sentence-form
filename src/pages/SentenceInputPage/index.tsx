@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Container } from '@mui/material';
-import { ComplexSentencePane } from '@chihatw/sentence-form.complex-sentence-pane';
 import { ComplexSentenceInput } from '@chihatw/sentence-form.complex-sentence-input';
 import React, { useContext, useEffect, useRef } from 'react';
 
 import TextInputPane from './components/TextInputPane';
 import { AppContext } from '../../services/context';
 import { sentenceID } from '../../services/useComplexSentences';
+import { ComplexSentencePane } from '../../components/complex-sentence-pane';
 
 const SentenceInputPage = () => {
   const {
@@ -31,15 +31,16 @@ const SentenceInputPage = () => {
   // 自動データ更新
   const timeoutIDRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (!!timeoutIDRef.current) {
-      clearTimeout(timeoutIDRef.current);
-    }
-    const _timeoutID = setTimeout(() => {
-      updateComplexSentence();
-    }, 0);
-    timeoutIDRef.current = _timeoutID;
-  }, [updateComplexSentence]);
+  // useEffect(() => {
+  //   if (!!timeoutIDRef.current) {
+  //     clearTimeout(timeoutIDRef.current);
+  //   }
+  //   const _timeoutID = setTimeout(() => {
+  //     console.log('!');
+  //     updateComplexSentence();
+  //   }, 0);
+  //   timeoutIDRef.current = _timeoutID;
+  // }, [updateComplexSentence]);
 
   const handleBack = () => {
     navitage('/');
@@ -79,7 +80,7 @@ const SentenceInputPage = () => {
               globalSentenceArrays={globalSentenceArrays}
               setGlobalSentenceArrays={setGlobalSentenceArrays}
             />
-            {sentenceParseProps.sentenceArrays.length && (
+            {!!sentenceParseProps.sentenceArrays.length && (
               <div>
                 <ComplexSentencePane
                   Cursor={null}

@@ -15,8 +15,8 @@ const TopPage = () => {
 
   const menuButtons: MenuButton[] = useMemo(
     () => [
-      { label: '復文入力', pathname: '/sentenceInput' },
-      { label: '復文表示', pathname: '/sentenceDisplay' },
+      { label: '複文入力', pathname: '/sentenceInput' },
+      { label: '複文表示', pathname: '/sentenceDisplay' },
     ],
     []
   );

@@ -1,5 +1,6 @@
-import { doc, onSnapshot, updateDoc } from '@firebase/firestore';
 import { useEffect, useState } from 'react';
+import { doc, onSnapshot, updateDoc } from '@firebase/firestore';
+
 import { db } from '../repositories/firebase';
 
 export type OriginalText = {

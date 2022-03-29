@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React, { useContext } from 'react';
-import { ComplexSentencePane } from '@chihatw/sentence-form.complex-sentence-pane';
+import { ComplexSentencePane } from '../../components/complex-sentence-pane';
 import { AppContext } from '../../services/context';
 
 const SentenceDisplayPage = () => {

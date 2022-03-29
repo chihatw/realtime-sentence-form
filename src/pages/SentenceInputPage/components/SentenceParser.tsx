@@ -1,5 +1,5 @@
-import { Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import { Button, TextField } from '@mui/material';
 
 const SentenceParser: React.FC<{
   handleClear: () => void;

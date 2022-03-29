@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import { doc, onSnapshot, updateDoc } from '@firebase/firestore';
-import { useEffect, useState } from 'react';
 import sentenceParseNew2SentenceParseProps from 'sentence-parse-new2sentence-parse-props';
 
 import { db } from '../repositories/firebase';
@@ -122,6 +122,12 @@ const DOC_ID = 'uouh1pOD69wjuapkoyBb';
 const COLLECTION = 'complexSentences';
 export const sentenceID = 'dummy';
 
+const INITIAL_SENTENCES = {
+  [sentenceID]: { ...INITIAL_SENTENCE, id: sentenceID },
+};
+
+const INITIAL_SENTENCE_ARRAYS = [[sentenceID]];
+
 const useComplexSentences = () => {
   const [globalWords, setGlobalWords] = useState<{ [id: string]: Word }>({});
   const [globalUnits, setGlobalUnits] = useState<{ [id: string]: Unit }>({});
@@ -130,10 +136,10 @@ const useComplexSentences = () => {
   }>({});
   const [globalSentences, setGlobalSentences] = useState<{
     [id: string]: Sentence;
-  }>({ [sentenceID]: { ...INITIAL_SENTENCE, id: sentenceID } });
-  const [globalSentenceArrays, setGlobalSentenceArrays] = useState<string[][]>([
-    [sentenceID],
-  ]);
+  }>(INITIAL_SENTENCES);
+  const [globalSentenceArrays, setGlobalSentenceArrays] = useState<string[][]>(
+    INITIAL_SENTENCE_ARRAYS
+  );
   const [activeSentenceID, setActiveSentenceID] = useState(sentenceID);
   const [sentenceParseProps, setSentenceParseProps] =
     useState<SentenceParseProps>({
@@ -156,6 +162,7 @@ const useComplexSentences = () => {
             sentences: JSON.parse(doc.data()!.sentences),
             sentenceArrays: JSON.parse(doc.data()!.sentenceArrays),
           });
+
           setSentenceParseProps(sentenceParseProps);
         }
       },
@@ -177,13 +184,16 @@ const useComplexSentences = () => {
       sentences: globalSentences,
       sentenceArrays: globalSentenceArrays,
     });
-    setSentenceParseProps({ ...sentenceParseProps });
+    console.log('changed');
+    updateComplexSentence();
+    // setSentenceParseProps(sentenceParseProps);
   }, [
     globalWords,
     globalUnits,
     globalBranches,
     globalSentences,
     globalSentenceArrays,
+    setSentenceParseProps,
   ]);
 
   const updateComplexSentence = () => {
@@ -194,7 +204,7 @@ const useComplexSentences = () => {
       sentences: JSON.stringify(globalSentences),
       sentenceArrays: JSON.stringify(globalSentenceArrays),
     };
-    console.log('update complex sentence');
+    console.log(`update complex sentence: ${JSON.stringify(complexSentence)}`);
     updateDoc(doc(db, 'complexSentences', DOC_ID), complexSentence);
   };
 
@@ -202,8 +212,8 @@ const useComplexSentences = () => {
     setGlobalUnits({});
     setGlobalWords({});
     setGlobalBranches({});
-    setGlobalSentences({ dummy: INITIAL_SENTENCE });
-    setGlobalSentenceArrays([]);
+    setGlobalSentences(INITIAL_SENTENCES);
+    setGlobalSentenceArrays(INITIAL_SENTENCE_ARRAYS);
   };
 
   const parseInputStr = (input: string) => {
@@ -214,12 +224,9 @@ const useComplexSentences = () => {
       sentences,
       sentenceArrays,
     }: {
-      line: number;
       units: string;
       words: string;
-      chinese: string;
       branches: string;
-      japanese: string;
       sentences: string;
       sentenceArrays: string;
     } = JSON.parse(input);
