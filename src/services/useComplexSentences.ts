@@ -177,16 +177,14 @@ const useComplexSentences = () => {
   }, []);
 
   useEffect(() => {
-    const sentenceParseProps = sentenceParseNew2SentenceParseProps({
-      words: globalWords,
-      units: globalUnits,
-      branches: globalBranches,
-      sentences: globalSentences,
-      sentenceArrays: globalSentenceArrays,
-    });
-    console.log('changed');
-    updateComplexSentence();
-    // setSentenceParseProps(sentenceParseProps);
+    const complexSentence: ComplexSentence = {
+      units: JSON.stringify(globalUnits),
+      words: JSON.stringify(globalWords),
+      branches: JSON.stringify(globalBranches),
+      sentences: JSON.stringify(globalSentences),
+      sentenceArrays: JSON.stringify(globalSentenceArrays),
+    };
+    updateDoc(doc(db, 'complexSentences', DOC_ID), complexSentence);
   }, [
     globalWords,
     globalUnits,
@@ -195,18 +193,6 @@ const useComplexSentences = () => {
     globalSentenceArrays,
     setSentenceParseProps,
   ]);
-
-  const updateComplexSentence = () => {
-    const complexSentence: ComplexSentence = {
-      units: JSON.stringify(globalUnits),
-      words: JSON.stringify(globalWords),
-      branches: JSON.stringify(globalBranches),
-      sentences: JSON.stringify(globalSentences),
-      sentenceArrays: JSON.stringify(globalSentenceArrays),
-    };
-    console.log(`update complex sentence: ${JSON.stringify(complexSentence)}`);
-    updateDoc(doc(db, 'complexSentences', DOC_ID), complexSentence);
-  };
 
   const clearComplexSentence = () => {
     setGlobalUnits({});
@@ -252,7 +238,6 @@ const useComplexSentences = () => {
     setGlobalSentences,
     setActiveSentenceID,
     clearComplexSentence,
-    updateComplexSentence,
     setGlobalSentenceArrays,
   };
 };

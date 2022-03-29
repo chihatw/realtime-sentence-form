@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Container } from '@mui/material';
-import { ComplexSentenceInput } from '@chihatw/sentence-form.complex-sentence-input';
+
 import React, { useContext, useEffect, useRef } from 'react';
 
 import TextInputPane from './components/TextInputPane';
 import { AppContext } from '../../services/context';
 import { sentenceID } from '../../services/useComplexSentences';
 import { ComplexSentencePane } from '../../components/complex-sentence-pane';
+import { ComplexSentenceInput } from '../../components/complex-sentence-input';
 
 const SentenceInputPage = () => {
   const {
@@ -22,25 +23,10 @@ const SentenceInputPage = () => {
     setGlobalBranches,
     setGlobalSentences,
     setActiveSentenceID,
-    updateComplexSentence,
     setGlobalSentenceArrays,
   } = useContext(AppContext);
 
   const navitage = useNavigate();
-
-  // 自動データ更新
-  const timeoutIDRef = useRef<NodeJS.Timeout | null>(null);
-
-  // useEffect(() => {
-  //   if (!!timeoutIDRef.current) {
-  //     clearTimeout(timeoutIDRef.current);
-  //   }
-  //   const _timeoutID = setTimeout(() => {
-  //     console.log('!');
-  //     updateComplexSentence();
-  //   }, 0);
-  //   timeoutIDRef.current = _timeoutID;
-  // }, [updateComplexSentence]);
 
   const handleBack = () => {
     navitage('/');
@@ -48,7 +34,7 @@ const SentenceInputPage = () => {
 
   return (
     <div>
-      <Container maxWidth='sm'>
+      <Container maxWidth='md'>
         <div style={{ backgroundColor: 'white', borderRadius: 8 }}>
           <div
             style={{

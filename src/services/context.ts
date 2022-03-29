@@ -43,7 +43,6 @@ export const AppContext = createContext<{
     }>
   >;
   clearComplexSentence: () => void;
-  updateComplexSentence: () => void;
   setGlobalSentenceArrays: React.Dispatch<React.SetStateAction<string[][]>>;
   parseInputStr: (value: string) => void;
   activeSentenceID: string;
@@ -67,6 +66,5 @@ export const AppContext = createContext<{
   updateOriginalText: () => {},
   setActiveSentenceID: () => {},
   clearComplexSentence: () => {},
-  updateComplexSentence: () => {},
   setGlobalSentenceArrays: () => {},
 });

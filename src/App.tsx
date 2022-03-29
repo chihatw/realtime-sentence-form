@@ -30,7 +30,6 @@ const App = () => {
     setGlobalSentences,
     setActiveSentenceID,
     clearComplexSentence,
-    updateComplexSentence,
     setGlobalSentenceArrays,
   } = useComplexSentences();
   return (
@@ -54,7 +53,6 @@ const App = () => {
         updateOriginalText,
         setActiveSentenceID,
         clearComplexSentence,
-        updateComplexSentence,
         setGlobalSentenceArrays,
       }}
     >
