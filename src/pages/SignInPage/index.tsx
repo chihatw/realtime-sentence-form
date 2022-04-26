@@ -1,9 +1,9 @@
-import SignInForm from '@bit/chihatw.lang-gym.sign-in-form';
 import { Container } from '@mui/material';
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 
 import { auth } from '../../repositories/firebase';
+import SignInForm from '../../components/SignInForm';
 
 const SignInPage = () => {
   const [emailErrMsg, setEmailErrMsg] = useState<string>('');
