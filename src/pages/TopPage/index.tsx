@@ -13,14 +13,14 @@ export type MenuButton = {
 const TopPage = () => {
   const navigate = useNavigate();
 
-  const menuButtons: MenuButton[] = useMemo(
-    () => [
-      { label: '複文入力', pathname: '/sentenceInput' },
-      { label: '複文表示', pathname: '/sentenceDisplay' },
-    ],
-    []
-  );
-
+  const menuButtons = [
+    { label: '複文入力', pathname: '/sentenceInput' },
+    { label: '複文表示', pathname: '/sentenceDisplay' },
+  ];
+  const menuButtonsNew = [
+    { label: '文の形入力', pathname: '/sentenceFormInput' },
+    { label: '文の形表示', pathname: '/sentenceFormPane' },
+  ];
   const handleSignOut = () => {
     signOut(auth);
   };
@@ -32,6 +32,7 @@ const TopPage = () => {
   return (
     <TopPageComponent
       menuButtons={menuButtons}
+      menuButtonsNew={menuButtonsNew}
       handleSignOut={handleSignOut}
       handleNavigate={handleNavigate}
     />

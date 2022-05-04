@@ -14,23 +14,14 @@ const MenuRow = ({
   return (
     <div
       style={{
-        border: '1px solid #ccc',
-        display: 'flex',
         padding: 8,
-        borderRadius: 4,
+        display: 'flex',
       }}
     >
-      <div
-        style={{
-          display: 'grid',
-          columnGap: 16,
-          gridTemplateColumns: 'auto auto',
-        }}
-      >
+      <div style={{ display: 'flex' }}>
         {buttons.map((button, index) => (
           <Button
             key={index}
-            variant='contained'
             onClick={() => {
               !!handleSignOut && handleSignOut();
               !!button.pathname &&
