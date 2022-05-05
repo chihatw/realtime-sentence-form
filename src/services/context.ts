@@ -10,6 +10,7 @@ import {
   SentenceParseProps,
   INITIAL_SENTENE_PARSE_PROPS,
 } from './useComplexSentences';
+import { INITIAL_SENTENCE_FORM, SentenceForm } from 'fsentence-types';
 
 export const AppContext = createContext<{
   user: User | null;
@@ -47,6 +48,7 @@ export const AppContext = createContext<{
   parseInputStr: (value: string) => void;
   activeSentenceID: string;
   setActiveSentenceID: React.Dispatch<React.SetStateAction<string>>;
+  sentenceForm: SentenceForm;
 }>({
   user: null,
   initializing: true,
@@ -67,4 +69,5 @@ export const AppContext = createContext<{
   setActiveSentenceID: () => {},
   clearComplexSentence: () => {},
   setGlobalSentenceArrays: () => {},
+  sentenceForm: INITIAL_SENTENCE_FORM,
 });

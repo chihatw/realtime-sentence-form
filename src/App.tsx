@@ -4,6 +4,7 @@ import { AppContext } from './services/context';
 import useOriginalTexts from './services/useOriginalTexts';
 import useComplexSentences from './services/useComplexSentences';
 import AppRoutes from './routes/AppRoutes';
+import { useSentenceForms } from './services/useSentenceForms';
 
 const App = () => {
   const { initializing, user } = useAuth();
@@ -25,6 +26,7 @@ const App = () => {
     clearComplexSentence,
     setGlobalSentenceArrays,
   } = useComplexSentences();
+  const { sentenceForm } = useSentenceForms();
   return (
     <AppContext.Provider
       value={{
@@ -47,6 +49,7 @@ const App = () => {
         setActiveSentenceID,
         clearComplexSentence,
         setGlobalSentenceArrays,
+        sentenceForm,
       }}
     >
       <AppRoutes />
