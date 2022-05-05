@@ -26,7 +26,7 @@ const App = () => {
     clearComplexSentence,
     setGlobalSentenceArrays,
   } = useComplexSentences();
-  const { sentenceForm } = useSentenceForms();
+  const { sentences } = useSentenceForms();
   return (
     <AppContext.Provider
       value={{
@@ -49,7 +49,7 @@ const App = () => {
         setActiveSentenceID,
         clearComplexSentence,
         setGlobalSentenceArrays,
-        sentenceForm,
+        sentences,
       }}
     >
       <AppRoutes />

@@ -3,17 +3,17 @@ import { SentenceFormPane } from '@chihatw/sentence-form.sentence-form-pane';
 import { Container, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useHandleSentenceForms } from '../../services/useSentenceForms';
-import { INITIAL_SENTENCE_FORM } from 'fsentence-types';
+import { FSentences } from 'fsentence-types';
 
 const SentenceFormInputPage = () => {
   const { updateSentenceForm } = useHandleSentenceForms();
-  const [sentenceForm, setSentenceForm] = useState(INITIAL_SENTENCE_FORM);
+  const [sentences, setSentences] = useState<FSentences>({});
 
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    updateSentenceForm(sentenceForm);
-  }, [sentenceForm]);
+    updateSentenceForm(sentences);
+  }, [sentences]);
 
   return (
     <Container maxWidth='sm' sx={{ paddingTop: 5 }}>
@@ -24,8 +24,8 @@ const SentenceFormInputPage = () => {
           onChange={(e) => setInput(e.target.value)}
           multiline
         />
-        <SentenceFormInput text={input} setSentenceForm={setSentenceForm} />
-        <SentenceFormPane sentences={sentenceForm.sentences} />
+        <SentenceFormInput text={input} setSentences={setSentences} />
+        <SentenceFormPane sentences={sentences} />
       </div>
     </Container>
   );

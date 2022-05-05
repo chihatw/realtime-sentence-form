@@ -5,14 +5,14 @@ import {
   updateDocument,
 } from '../repositories/utils';
 import { db } from '../repositories/firebase';
-import { INITIAL_SENTENCE_FORM, SentenceForm } from 'fsentence-types';
+import { FSentences } from 'fsentence-types';
 import { DocumentData, Unsubscribe } from 'firebase/firestore';
 
 const COLLECTION = 'sentenceForms';
 const SENTENCE_FORM_DOC_ID = 'sentenceForm';
 
 export const useSentenceForms = () => {
-  const [sentenceForm, setSentenceForm] = useState(INITIAL_SENTENCE_FORM);
+  const [sentences, setSentences] = useState<FSentences>({});
 
   const _snapshotDocument = useMemo(
     () =>
@@ -41,15 +41,15 @@ export const useSentenceForms = () => {
   useEffect(() => {
     const unsub = _snapshotDocument({
       id: SENTENCE_FORM_DOC_ID,
-      initialValue: INITIAL_SENTENCE_FORM,
-      setValue: setSentenceForm,
-      buildValue: buildSentenceForm,
+      initialValue: {},
+      setValue: setSentences,
+      buildValue: buildSentences,
     });
     return () => {
       unsub();
     };
   }, []);
-  return { sentenceForm };
+  return { sentences };
 };
 export const useHandleSentenceForms = () => {
   const _setDocument = useMemo(
@@ -66,16 +66,16 @@ export const useHandleSentenceForms = () => {
       },
     []
   );
-  const setSentenceForm = async (sentenceForm: SentenceForm) => {
-    return _setDocument({ id: SENTENCE_FORM_DOC_ID, sentenceForm });
+  const setSentenceForm = async (sentences: FSentences) => {
+    return _setDocument({ id: SENTENCE_FORM_DOC_ID, sentences });
   };
-  const updateSentenceForm = async (sentenceForm: SentenceForm) => {
-    return _updateDocument({ id: SENTENCE_FORM_DOC_ID, sentenceForm });
+  const updateSentenceForm = async (sentences: FSentences) => {
+    return _updateDocument({ id: SENTENCE_FORM_DOC_ID, sentences });
   };
   return { setSentenceForm, updateSentenceForm };
 };
 
-const buildSentenceForm = (doc: DocumentData) => {
-  const sentenceForm: SentenceForm = doc.data().sentenceForm;
-  return sentenceForm;
+const buildSentences = (doc: DocumentData) => {
+  const sentences: FSentences = doc.data().sentences;
+  return sentences;
 };

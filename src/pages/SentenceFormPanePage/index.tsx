@@ -3,11 +3,11 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../services/context';
 
 const SentenceFormPanePage = () => {
-  const { sentenceForm } = useContext(AppContext);
+  const { sentences } = useContext(AppContext);
 
   return (
     <div style={{ padding: 40 }}>
-      <SentenceFormPane sentences={sentenceForm.sentences} />
+      <SentenceFormPane sentences={sentences} />
     </div>
   );
 };
