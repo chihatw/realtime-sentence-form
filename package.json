@@ -9,9 +9,9 @@
     "upgrade-interactive": "npm-check --update"
   },
   "dependencies": {
-    "@chihatw/sentence-form.complex-sentence-pane": "^1.0.5",
-    "@chihatw/sentence-form.sentence-form-input": "^1.0.5",
-    "@chihatw/sentence-form.sentence-form-pane": "^1.0.2",
+    "@chihatw/sentence-form.complex-sentence-pane": "^1.0.6",
+    "@chihatw/sentence-form.sentence-form-input": "^1.0.9",
+    "@chihatw/sentence-form.sentence-form-pane": "^1.0.21",
     "@chihatw/sentence-form.word-pane": "^1.0.0",
     "@emotion/css": "^11.9.0",
     "@emotion/react": "^11.9.0",
@@ -25,8 +25,8 @@
     "@types/node": "^17.0.25",
     "firebase": "^9.6.11",
     "fsentence-types": "^1.0.0",
-    "hinshi-colors": "^1.0.2",
-    "hinshi-texts": "^1.0.0",
+    "hinshi-colors": "^2.0.0",
+    "hinshi-texts": "^2.0.0",
     "react": "^18.0.0",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^18.0.0",
