@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@chihatw/sentence-form.complex-sentence-pane": "^1.0.6",
-    "@chihatw/sentence-form.sentence-form-input": "^1.0.9",
-    "@chihatw/sentence-form.sentence-form-pane": "^1.0.21",
+    "@chihatw/sentence-form.sentence-form-input": "^1.0.10",
+    "@chihatw/sentence-form.sentence-form-pane": "^1.0.22",
     "@chihatw/sentence-form.word-pane": "^1.0.0",
     "@emotion/css": "^11.9.0",
     "@emotion/react": "^11.9.0",
